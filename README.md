@@ -8,6 +8,11 @@ https://ipfs.io/docs/install/
 
 https://ipfs.io/docs/getting-started/
 
+#### Runnig IPFS 
+
+ipfs init
+ipfs daemon
+
 #### Running Example
 
 mvn clean install
