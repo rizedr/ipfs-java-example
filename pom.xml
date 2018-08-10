@@ -10,6 +10,7 @@
    <properties>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <IPFS_HOST>develop.supplychain.consensys.net</IPFS_HOST>
 </properties>
   <repositories>
 		<repository>
@@ -82,7 +83,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>com.clustrex.app.APP</mainClass>
+                        <mainClass>com.clustrex.app.App</mainClass>
                     </manifest>
                 </archive>
             </configuration>
