@@ -8,18 +8,10 @@ https://ipfs.io/docs/install/
 
 https://ipfs.io/docs/getting-started/
 
-#### Runnig IPFS 
-
-ipfs init
-
-ipfs daemon
-
 #### Running Example
-
-change input and output file location in src/main/java/com/clustrex/app/App.java
 
 mvn clean install
 
 mvn clean package 
 
-java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App
+java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App uploadFilePath="XXX" ipfsHash="YYY" downloadFilePath="ZZZ"
