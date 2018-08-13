@@ -32,4 +32,4 @@ https://ipfs.io/docs/getting-started/
   java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="SSL_LOCATION" -Djavax.net.ssl.trustStorePassword="SSL_PASSWORD" ipfsHash="IPFS_HASH" downloadFilePath="FILE_DOWNLOAD_LOCATION_PATH"
 
   **Example**
->			java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App 		-Djavax.net.ssl.trustStore="C:\Users\Murugesh\Desktop\Projects\java-ipfs-api\cacerts" -Djavax.net.ssl.trustStorePassword="password123" ipfsHash="QmXfvS2aMRmJKXhnYg7zT9qHN6BmgViJn4cMSfnY1H4Qmo" downloadFilePath="C:/Users/Clustrex4/Downloads/2.png"
+>			java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="C:\Users\Murugesh\Desktop\Projects\java-ipfs-api\cacerts" -Djavax.net.ssl.trustStorePassword="password123" ipfsHash="QmXfvS2aMRmJKXhnYg7zT9qHN6BmgViJn4cMSfnY1H4Qmo" downloadFilePath="C:/Users/Clustrex4/Downloads/2.png"
