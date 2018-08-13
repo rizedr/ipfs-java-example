@@ -20,16 +20,10 @@ https://ipfs.io/docs/getting-started/
 2. Move to the SSL location in CLI tool and connect to viant server using the command _openssl s_client -connect develop.supplychain.consensys.net:443 -servername develop.supplychain.consensys.net > develop.supplychain.consensys.net_ssl_cert.pem_
 3. Add the created pem file to your keystore using the command _keytool -import -keystore cacerts -alias devviant -file "C:\OpenSSL-Win64\bin\develop.supplychain.consensys.net_ssl_cert.pem"
 
-- Upload File
+- Upload and Download File
 
-  java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="SSL_LOCATION" -Djavax.net.ssl.trustStorePassword="SSL_PASSWORD" uploadFilePath="FILE_LOCATION_PATH"
+  java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="SSL_LOCATION" -Djavax.net.ssl.trustStorePassword="SSL_PASSWORD" uploadFilePath="FILE_LOCATION_PATH" downloadFilePath="FILE_DOWNLOAD_LOCATION_PATH"
 
   **Example**
 >			java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="C:\Users\Murugesh\Desktop\Projects\java-ipfs-api\cacerts" -Djavax.net.ssl.trustStorePassword="password123" uploadFilePath="C:/Users/Clustrex4/Downloads/2.png"
-
-- Download File
-
-  java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="SSL_LOCATION" -Djavax.net.ssl.trustStorePassword="SSL_PASSWORD" ipfsHash="IPFS_HASH" downloadFilePath="FILE_DOWNLOAD_LOCATION_PATH"
-
-  **Example**
->			java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar com.clustrex.app.App -Djavax.net.ssl.trustStore="C:\Users\Murugesh\Desktop\Projects\java-ipfs-api\cacerts" -Djavax.net.ssl.trustStorePassword="password123" ipfsHash="QmXfvS2aMRmJKXhnYg7zT9qHN6BmgViJn4cMSfnY1H4Qmo" downloadFilePath="C:/Users/Clustrex4/Downloads/2.png"
+downloadFilePath="C:/Users/Clustrex4/Downloads/2.png"

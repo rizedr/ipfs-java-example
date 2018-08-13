@@ -26,18 +26,14 @@ public class App
     {
 
 			String getFilePath = null;
-			String IPFSPath = null;
 			String saveFilePath = null;
-
+      List<MerkleNode> addResult = null;
 			for (Integer index=0; index < args.length; index++) {
 				String [] arrOfStr = args[index].split("=");
 				String firstString = arrOfStr[0];        
-				switch (firstString) {
+		switch (firstString) {
         case "uploadFilePath":
             getFilePath = arrOfStr[1];
-            break;
-        case "ipfsHash":
-            IPFSPath = arrOfStr[1];
             break;
         case "downloadFilePath":
             saveFilePath = arrOfStr[1];
@@ -55,23 +51,27 @@ public class App
 			String apiPath = props.getProperty("IPFS_API_PATH");
 			String ipfsProtocol = props.getProperty("IPFS_PROTOCOL");
 			String ipfsGatewayPath = props.getProperty("IPFS_GATEWAY_PATH");
+      String[] splittedPath =  getFilePath.split("/");
+      Integer uploadStringLength = splittedPath.length;
+      String uploadFileName = splittedPath[uploadStringLength-1 ];
 
 	    IPFS ipfs = new IPFS(ipfsHost,apiPort,"/"+apiPath,true);
 
 			if (getFilePath != null) {
     	NamedStreamable.FileWrapper file = new NamedStreamable.FileWrapper(new File(getFilePath));
-    	List<MerkleNode> addResult = ipfs.add(file);
-    	System.out.println("File has been successfully uploaded to ipfs, To view the file "+ ipfsProtocol + "://" + ipfsHost + "/" + ipfsGatewayPath + addResult.get(addResult.size() - 1).hash.toBase58());
+    	addResult = ipfs.add(file, true);
+    	System.out.println("File has been successfully uploaded to ipfs..!");
+      System.out.println("View Directory: "+ ipfsProtocol + "://" + ipfsHost + "/" + ipfsGatewayPath + addResult.get(addResult.size() - 1).hash.toBase58());
+      System.out.println("View File: "+ ipfsProtocol + "://" + ipfsHost + "/" + ipfsGatewayPath + addResult.get(addResult.size() - 1).hash.toBase58() + "/" + uploadFileName);
 			}
 
-    	if ((IPFSPath != null) && (saveFilePath != null)) {
-				// Getting the same hash's content back from IPFS and store as output.png
-    	Multihash filePointer = Multihash.fromBase58(IPFSPath);
-    	byte[] fileContents = ipfs.cat(filePointer);
+    	if (saveFilePath != null) {
+      MerkleNode filePart = addResult.get(0);
+      byte[] fileContents = ipfs.cat(filePart.hash);
 
     	try (FileOutputStream fos = new FileOutputStream(saveFilePath)) {
     		   fos.write(fileContents);
-    		   System.out.println("File Successfully saved in your current location");
+    		   System.out.println("File Successfully saved in " + saveFilePath +" location");
     		}
 			}
     }
