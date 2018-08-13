@@ -1,23 +1,17 @@
-package com.clustrex.app;
+package io.viant.ipfsclient;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.util.*;
 
 import io.ipfs.api.IPFS;
 import io.ipfs.api.MerkleNode;
 import io.ipfs.api.NamedStreamable;
-import io.ipfs.*;
-import io.ipfs.api.*;
-import io.ipfs.api.cbor.*;
-import io.ipfs.multihash.Multihash;
-import io.ipfs.multiaddr.*;
 
 /**
- * Simple IPFS Upload and Retrival
+ * Simple IPFS Upload and Retrieval
  */
 public class App 
 {
