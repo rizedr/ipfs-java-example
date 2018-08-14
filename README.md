@@ -1,20 +1,20 @@
 # Viant - Java IPFS
 
-Viant offers a private IPFS service as a file storage solution. This IPFS service is disconnected from public IPFS and, thus, it's private from other nodes. More information about IPFS can be found_here_ (https://ipfs.io/docs/getting-started/).
+Viant offers a private IPFS service as a file storage solution. This IPFS service is disconnected from public IPFS and, thus, it's private from other nodes. More information about IPFS can be found [here](https://ipfs.io/docs/getting-started/).
 
-In this Java-IPFS example, we have used the java-ipfs-api (https://github.com/ipfs/java-ipfs-api) library to establish a secure connection with the Private IPFS instances of Viant. Please make sure you are using v1.2.1. 
+In this Java-IPFS example, we have used the [java-ipfs-api](https://github.com/ipfs/java-ipfs-api) library to establish a secure connection with the Private IPFS instances of Viant. Please make sure you are using v1.2.1.
 
 ## Pre-requisites
 
 To connect to Viant IPFS in Java we need SSL authentication, below steps helps to get and set the certificate for the domain.
 
-1. Download SSL from https://www.openssl.org (https://www.openssl.org/) if SSL is not in your system
+1. Download OpenSSL from [here](https://www.openssl.org/) if SSL is not in your system
 2. Move to the SSL location in CLI tool and connect to viant server using the command
 
      openssl s_client -connect {HOST_NAME}:443 -servername {HOST_NAME} > {SSL_FILE_NAME_TO_BE_SAVED}
 
     *Example:*
-    ```
+    ```bash
     openssl s_client -connect develop.supplychain.consensys.net:443 -servername develop.supplychain.consensys.net > develop.supplychain.consensys.net_ssl_cert.pem
     ```
 3. Add the created pem file to your keystore using the command
@@ -22,16 +22,12 @@ To connect to Viant IPFS in Java we need SSL authentication, below steps helps t
     keytool -import -keystore cacerts -alias devviant -file {GENERATED_PEM_FILE_LOCATION_}
 
     *Example:*
-    ```
+
+    ```bash
     keytool -import -keystore cacerts -alias devviant -file "C:\OpenSSL-Win64\bin\develop.supplychain.consensys.net_ssl_cert.pem"
     ```
 
-
-## Example Repository Location: ## 
-
-    [Java-IPFS](https://github.com/ConsenSys/viant-IPFS-Java)
-
-## Java-IPFS Environment Variables ##
+## Java-IPFS Environment Variables
 
 IPFS_PROTOCOL=https
 
@@ -49,13 +45,15 @@ IPFS_DIRECTORY_PATH=supplychain
 
 IPFS_MAX_FILE=20000
 
+## IPFS API endpoint
 
-## IPFS API endpoint ##
 *-* ${IPFS_PROTOCOL}://${IPFS_HOST}:${IPFS_API_PORT}/${IPFS_API_PATH}
-## IPFS Gateway endpoint ##
+
+## IPFS Gateway endpoint
+
 *-* ${IPFS_PROTOCOL}://${IPFS_HOST}:${IPFS_GATEWAY_PORT}/${IPFS_GATEWAY_PATH}
 
-## Execution Steps ##
+## Execution Steps
 
 1. To install all dependency jars and compile the code
 
@@ -64,12 +62,11 @@ IPFS_MAX_FILE=20000
 
     *mvn clean package*
 
-
 **Commands**
 
-- *Upload and Read a file in IPFS*_
+- *Upload and Read a file in IPFS*
 
-``` java
+```java
 java -classpath {JAR_LOCATION_PATH} io.viant.ipfsclient.App -Djavax.net.ssl.trustStore={SSL_LOCATION} -Djavax.net.ssl.trustStorePassword={SSL_PASSWORD} uploadFilePath={FILE_LOCATION_PATH} downloadFilePath={FILE_DOWNLOAD_LOCATION_PATH}
 ```
 
@@ -77,8 +74,8 @@ java -classpath {JAR_LOCATION_PATH} io.viant.ipfsclient.App -Djavax.net.ssl.trus
 /**
  * Uploads the file by reading the path of the input file from User in CLI to IPFS
  * and returns the ipfs hash of the file.
- * 
- * @param ipfs               - IPFS Instance connected to our Instance 
+ *
+ * @param ipfs               - IPFS Instance connected to our Instance
  * @param getFilePath        - Path of the file which is going to be uploaded
  * @return                   - The List of MerkleNode which contains the FilePart,
  *                             Hash of the file, etc.
@@ -134,7 +131,6 @@ private static void readFromIpfs(IPFS ipfs, MerkleNode filePart, String saveFile
 }
 ```
 
-
 **Example:**
 
 ```java
@@ -143,7 +139,7 @@ java -classpath target\ipfs-java-example-1.0-SNAPSHOT.jar io.viant.ipfsclient.Ap
 
 **Output:**
 
-```
+```terminal
 File has been successfully uploaded to IPFS in develop.supplychain.consensys.net...!
 
 ---------------------------------------------------------------------------------------------------------
