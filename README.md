@@ -10,29 +10,45 @@ To connect to Viant IPFS in Java we need SSL authentication, below steps helps t
 
 1. Download SSL from https://www.openssl.org (https://www.openssl.org/) if SSL is not in your system
 2. Move to the SSL location in CLI tool and connect to viant server using the command
-3. openssl s_client -connect {HOST_NAME}:443 -servername {HOST_NAME} > {SSL_FILE_NAME_TO_BE_SAVED}
-    1. Example:
-    2. openssl s_client -connect develop.supplychain.consensys.net:443 -servername develop.supplychain.consensys.net > develop.supplychain.consensys.net_ssl_cert.pem
-4. Add the created pem file to your keystore using the command
-5. keytool -import -keystore cacerts -alias devviant -file {GENERATED_PEM_FILE_LOCATION_}_
-    1. _Example:
-        _
-    2. keytool -import -keystore cacerts -alias devviant -file "C:\OpenSSL-Win64\bin\develop.supplychain.consensys.net_ssl_cert.pem"
+
+     openssl s_client -connect {HOST_NAME}:443 -servername {HOST_NAME} > {SSL_FILE_NAME_TO_BE_SAVED}
+
+    *Example:*
+    ```
+    openssl s_client -connect develop.supplychain.consensys.net:443 -servername develop.supplychain.consensys.net > develop.supplychain.consensys.net_ssl_cert.pem
+    ```
+3. Add the created pem file to your keystore using the command
+
+    keytool -import -keystore cacerts -alias devviant -file {GENERATED_PEM_FILE_LOCATION_}
+
+    *Example:*
+    ```
+    keytool -import -keystore cacerts -alias devviant -file "C:\OpenSSL-Win64\bin\develop.supplychain.consensys.net_ssl_cert.pem"
+    ```
 
 
 ## Example Repository Location: ## 
-    Java-IPFS (https://github.com/ConsenSys/viant-IPFS-Java)
+
+    [Java-IPFS](https://github.com/ConsenSys/viant-IPFS-Java)
 
 ## Java-IPFS Environment Variables ##
 
 IPFS_PROTOCOL=https
+
 IPFS_HOST=develop.supplychain.consensys.net // Any Viant Instance
+
 IPFS_API_PORT=443
+
 IPFS_API_PATH=ipfs/api/v0/
+
 IPFS_GATEWAY_PORT=443
+
 IPFS_GATEWAY_PATH=gateway/ipfs/
+
 IPFS_DIRECTORY_PATH=supplychain
+
 IPFS_MAX_FILE=20000
+
 
 ## IPFS API endpoint ##
 *-* ${IPFS_PROTOCOL}://${IPFS_HOST}:${IPFS_API_PORT}/${IPFS_API_PATH}
@@ -42,9 +58,11 @@ IPFS_MAX_FILE=20000
 ## Execution Steps ##
 
 1. To install all dependency jars and compile the code
-2. *mvn clean install*
-3. To take the compiled code and package it in JAR format.
-4. *mvn clean package*
+
+    *mvn clean install*
+2. To take the compiled code and package it in JAR format.
+
+    *mvn clean package*
 
 
 **Commands**
