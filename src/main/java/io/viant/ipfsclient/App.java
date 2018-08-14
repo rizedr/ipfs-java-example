@@ -29,9 +29,9 @@ public class App
 	public static void initiate(){
 		try {
 			InputStream s = App.class.getResourceAsStream("/config.properties");
-	    // now can use this input stream as usually,
+			// now can use this input stream as usually,
 			// i.e. to load as properties
-	    Properties props = new Properties();
+			Properties props = new Properties();
 			props.load(s);
 			App.ipfsHost = props.getProperty("IPFS_HOST");
 			App.apiPort = Integer.valueOf(props.getProperty("IPFS_API_PORT"));
@@ -103,33 +103,33 @@ public class App
 	}
 	
     public static void main(String[] args) throws IOException {
-			// Initiate the process by reading the config properties
-			initiate();
-			String getFilePath = null;
-			String saveFilePath = null;
-			List<MerkleNode> addResult = null;
-
-			// parse the arguments from command line
-			// Read the Arguments from command line here
-			for (Integer index=0; index < args.length; index++) {
-				String [] arrOfStr = args[index].split("=");
-				String firstString = arrOfStr[0];        
-				switch (firstString) {
-					case "uploadFilePath":
-						getFilePath = arrOfStr[1];
-						break;
-					case "downloadFilePath":
-						saveFilePath = arrOfStr[1];
-						break;
-				}
+		// Initiate the process by reading the config properties
+		initiate();
+		String getFilePath = null;
+		String saveFilePath = null;
+		List<MerkleNode> addResult = null;
+	
+		// parse the arguments from command line
+		// Read the Arguments from command line here
+		for (Integer index=0; index < args.length; index++) {
+			String [] arrOfStr = args[index].split("=");
+			String firstString = arrOfStr[0];        
+			switch (firstString) {
+				case "uploadFilePath":
+					getFilePath = arrOfStr[1];
+					break;
+				case "downloadFilePath":
+					saveFilePath = arrOfStr[1];
+					break;
 			}
-
-			// Initiate IPFS object
-			IPFS ipfs = new IPFS(ipfsHost, apiPort, "/" + apiPath, true);  
-			addResult = uploadToIpfs(ipfs, getFilePath);
-			// Get the Filepart from the uploaded result
-			// pass it to read from ipfs location
-			MerkleNode filePart = addResult.get(0);
-			readFromIpfs(ipfs, filePart, saveFilePath);
 		}
+	
+		// Initiate IPFS object
+		IPFS ipfs = new IPFS(ipfsHost, apiPort, "/" + apiPath, true);  
+		addResult = uploadToIpfs(ipfs, getFilePath);
+		// Get the Filepart from the uploaded result
+		// pass it to read from ipfs location
+		MerkleNode filePart = addResult.get(0);
+		readFromIpfs(ipfs, filePart, saveFilePath);
+	}
 }
